@@ -1,7 +1,12 @@
 package com.paulienvanalst.rugbymatch.team
 
+import java.util.*
 
-class Player(val position: Position, val bakcNumber: Int) {
-//todo to implement
+
+data class Player(val position: Position, val backNumber: Int) {
+
+    val isStarting: Boolean
+        get() = backNumber in 1..15
 
 }
+

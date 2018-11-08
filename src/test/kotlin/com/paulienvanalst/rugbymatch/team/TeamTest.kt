@@ -3,6 +3,7 @@ package com.paulienvanalst.rugbymatch.team
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.MatcherAssert.assertThat
+import org.hamcrest.Matchers
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
@@ -11,7 +12,6 @@ import org.junit.jupiter.api.Test
 
 class TeamTest {
     @Nested
-    @Disabled
     @DisplayName("Ex 1d: When a team")
     inner class ValidatingTeamTest {
 
@@ -63,7 +63,6 @@ class TeamTest {
     }
 
     @Nested
-    @Disabled
     @DisplayName("Ex 1e: When a team has a captain")
     inner class CaptainTest {
         private val onePlayerPerPosition = Position.values().map { Player(it, it.ordinal + 1) } +
@@ -76,6 +75,9 @@ class TeamTest {
         fun `it's back number is 7 when a scrumhalf is present`() {
             val team = Team(onePlayerPerPosition, TeamName.RC_TOULON)
             assertThat(team.captainBackNumber(), `is`(7))
+            assertThat(team.teamHasscrumHalf,  `is`(true))
+            assertThat(team.scrumhalf(), Matchers.`is`(Matchers.notNullValue()))
+
         }
 
         @Test
